@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-  .container {
+    .container {
       position: absolute;
       left: 50%;
       top: 50%;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, -50%);
     }
 
     body {
@@ -54,13 +55,14 @@
       font-size: 50px;
       border: 1px solid black;
     }
+
     .words {
       font-size: 30px;
       background: #000;
       color: white;
     }
 
-    .box2 { 
+    .box2 {
       position: relative;
       left: 30%;
     }
@@ -71,11 +73,11 @@
 
     .pic1 {
       background-image: url(./images/1.jpg);
-    } 
+    }
 
     .pic2 {
       background-image: url(./images/2.jpg);
-    } 
+    }
 
     .pic3 {
       background-image: url(./images/3.jpg);
@@ -83,11 +85,11 @@
 
     .pic4 {
       background-image: url(./images/4.jpg);
-    } 
+    }
 
     .pic5 {
       background-image: url(./images/5.jpg);
-    } 
+    }
 
     .pic6 {
       background-image: url(./images/6.jpg);
@@ -95,65 +97,66 @@
 
     .pic7 {
       background-image: url(./images/7.jpg);
-    }  
-  </style>  
+    }
+  </style>
 </head>
+
 <body>
-<div class="container">
-  <div class="exopics">
-    <table>
-      <tr id="exopicker">
-        <td class="pick pic1"></td>
-        <td class="pick pic2"></td>
-        <td class="pick pic3"></td>
-        <td class="pick pic4"></td>
-        <td class="pick pic5"></td>
-        <td class="pick pic6"></td>
-        <td class="pick pic7"></td>
-      </tr>
-      <tr class="words">
-        <td>邊伯賢</td>
-        <td>朴燦烈</td>
-        <td>都敬秀</td>
-        <td>金鍾仁</td>
-        <td>吳世勳</td>
-        <td>金俊勉</td>
-        <td>金珉錫</td>
-      </tr>
-  </table>
-</div>
-  <div class="box2">    
-    <table id="game">
-      <tr>
-        <td id="hole7" class="pic"></td>
-        <td id="hole8" class="pic"></td>
-        <td id="hole9" class="pic"></td>
-      </tr>
-      <tr>
-        <td id="hole4" class="pic"></td>
-        <td id="hole5" class="pic"></td>
-        <td id="hole6" class="pic"></td>
-      </tr>
-      <tr>
-        <td id="hole1" class="pic"></td>
-        <td id="hole2" class="pic"></td>
-        <td id="hole3" class="pic"></td>
-      </tr>
-    </table>
-    <input type="button" value="開始遊戲" class="button" id="btn-start">
-    <p>
-      目前分數:
-      <span id="text-score">0</span>
-    </p>
-    <p>
-      最高紀錄
-      <br>
-      玩家: <span id="text-highplayer"></span>
-      <br>
-      分數: <span id="text-highscore"></span>
-    </p>
+  <div class="container">
+    <div class="exopics">
+      <table>
+        <tr id="exopicker">
+          <td class="pick pic1"></td>
+          <td class="pick pic2"></td>
+          <td class="pick pic3"></td>
+          <td class="pick pic4"></td>
+          <td class="pick pic5"></td>
+          <td class="pick pic6"></td>
+          <td class="pick pic7"></td>
+        </tr>
+        <tr class="words">
+          <td>邊伯賢</td>
+          <td>朴燦烈</td>
+          <td>都敬秀</td>
+          <td>金鍾仁</td>
+          <td>吳世勳</td>
+          <td>金俊勉</td>
+          <td>金珉錫</td>
+        </tr>
+      </table>
+    </div>
+    <div class="box2">
+      <table id="game">
+        <tr>
+          <td id="hole7" class="pic"></td>
+          <td id="hole8" class="pic"></td>
+          <td id="hole9" class="pic"></td>
+        </tr>
+        <tr>
+          <td id="hole4" class="pic"></td>
+          <td id="hole5" class="pic"></td>
+          <td id="hole6" class="pic"></td>
+        </tr>
+        <tr>
+          <td id="hole1" class="pic"></td>
+          <td id="hole2" class="pic"></td>
+          <td id="hole3" class="pic"></td>
+        </tr>
+      </table>
+      <input type="button" value="開始遊戲" class="button" id="btn-start">
+      <p>
+        目前分數:
+        <span id="text-score">0</span>
+      </p>
+      <p>
+        最高紀錄
+        <br>
+        玩家: <span id="text-highplayer"></span>
+        <br>
+        分數: <span id="text-highscore"></span>
+      </p>
+    </div>
   </div>
-</div>
   <script>
     const btnStart = document.getElementById('btn-start')
     const holes = document.querySelectorAll('#game td')
@@ -165,6 +168,9 @@
     const rihai = new Audio()
     rihai.src = './rihai.mp3'
 
+    const click = new Audio()
+    click.src = './click.mp3'
+
     let score = 0
     let isInGame = false
 
@@ -172,11 +178,11 @@
 
     let highscore = { name: '', score: 0 }
     let highscoreStorage = JSON.parse(localStorage.getItem('highscore'))
-    if(highscoreStorage !== null) {
+    if (highscoreStorage !== null) {
       highscore = highscoreStorage
       textHighPlayer.innerText = highscore.name
       textHighScore.innerText = highscore.score
-    }   
+    }
 
     btnStart.onclick = () => {
       btnStart.disabled = true
@@ -193,24 +199,24 @@
     }
 
     // 還不知道怎麼寫! 讓用戶選擇成為能狙擊的圖案
-      let num = Math.floor(Math.random()*8);
+    let num = Math.floor(Math.random() * 8);
 
     // 還不知道怎麼改讓照片不要出現在重複的格子
     const game = () => {
-      for(const hole of holes) {
-        hole.classList.remove("pic"+num)
+      for (const hole of holes) {
+        hole.classList.remove("pic" + num)
         hole.classList.remove("pic1")
         hole.classList.remove('correct')
       }
-      
-      for(let p=0;p<1;p++) {
-        const random = Math.floor(Math.random()*9)
+
+      for (let p = 0; p < 1; p++) {
+        const random = Math.floor(Math.random() * 9)
         holes[random].classList.add("pic1")
       }
-      for(let i=0;i<3;i++) {
-        const random = Math.floor(Math.random()*9)
-        holes[random].classList.add("pic"+num)
-        holes[random].classList.add("pic"+num)
+      for (let i = 0; i < 3; i++) {
+        const random = Math.floor(Math.random() * 9)
+        holes[random].classList.add("pic" + num)
+        holes[random].classList.add("pic" + num)
       }
 
     }
@@ -218,8 +224,8 @@
     const end = () => {
       clearInterval(timer)
 
-      for(const hole of holes) {
-        hole.classList.remove("pic"+num)
+      for (const hole of holes) {
+        hole.classList.remove("pic" + num)
         hole.classList.remove("pic1")
         hole.classList.remove('correct')
       }
@@ -227,25 +233,25 @@
       btnStart.disabled = false
       alert(`你的分數是 ${score}`)
 
-      if(highscoreStorage === null || highscore.score < score) {
+      if (highscoreStorage === null || highscore.score < score) {
         rihai.play()
 
         const name = prompt('最高分! 請輸入你的名字')
         highscore.score = score
         highscore.name = name || '路人'
-  
+
         localStorage.setItem('highscore', JSON.stringify(highscore))
         textHighPlayer.innerText = highscore.name
         textHighScore.innerText = highscore.score
       }
     }
 
-    for(const hole of holes) {
+    for (const hole of holes) {
       hole.onclick = () => {
-        if(hole.classList.contains("pic"+num)) {
-          hole.classList.remove("pic"+num)
+        if (hole.classList.contains("pic" + num)) {
+          hole.classList.remove("pic" + num)
           hole.classList.add('correct')
-
+          click.play()
           score++
           textScore.innerText = score
         }
@@ -254,10 +260,10 @@
 
     document.onkeydown = event => {
       const key = event.key
-      if(!isNaN(key) && isInGame) {
+      if (!isNaN(key) && isInGame) {
         const target = document.getElementById(`hole${key}`)
-        if(target && target.classList.contains("pic"+num)) {
-          target.classList.remove("pic"+num)
+        if (target && target.classList.contains("pic" + num)) {
+          target.classList.remove("pic" + num)
           target.classList.add('correct')
 
           score++
@@ -267,4 +273,5 @@
     }
   </script>
 </body>
+
 </html>
